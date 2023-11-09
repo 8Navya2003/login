@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/style.css">
+    
+</head>
+<body>
+    <nav>
+        <label class="logo"><img src="https://github.com/an03oushka/proj1/blob/main/src/logo.png?raw=true">PennyPincherPal</label>
+        <ul>
+            <li><a class="active"  href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li><li>
+        </ul>
+    </nav>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form action="/login"method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="username" placeholder="Enter your name" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="password" required>
+            </div>
+            <button type="Submit" class="submit-btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/signup">Signup</a></p>
+    </div>
+    <script>
+        const MyComponent = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [mobile, setMobile] = useState('');
+    const [nameError, setNameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [mobileError, setMobileError] = useState('');
+  
+    const validateForm = () => {
+      let isValid = true;
+
+      if (name.trim() === '') {
+        setNameError('Name is required');
+        isValid = false;
+      } else {
+        setNameError('');
+      }
+  
+      if (email.trim() === '') {
+        setEmailError('Email is required');
+        isValid = false;
+      } else if (!isValidEmail(email)) {
+        setEmailError('Invalid email format');
+        isValid = false;
+      } else {
+        setEmailError('');
+      }
+  
+      if (mobile.trim() === '') {
+        setMobileError('Mobile No is required');
+        isValid = false;
+      } else {
+        setMobileError('');
+      }
+
+      if (isValid) {
+        // Form submission logic goes here
+      }
+    };
+
+    const isValidEmail = (email) => {
+      // You can implement your email validation logic here
+      // This is a simple example, you may want to use a more robust validation library
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return emailRegex.test(email);
+    };
+  
+    return (
+      <div className="container mt-5">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <div className="card">
+              <div className="card-body custom-form-bg" style={{ backgroundColor: '#dddddd' }}>
+                <form id="myForm">
+                  <div className="mb-3">
+                    <label htmlFor="name" className="form-label">
+                      <i className="fas fa-user"></i> Name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="name"
+                      placeholder="Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                    <div className="error-message" style={{ color: 'red' }}>
+                      {nameError}
+                    </div>
+                  </div>
+  
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label">
+                      <i className="fas fa-envelope"></i> Email
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <div className="error-message" style={{ color: 'red' }}>
+                      {emailError}
+                    </div>
+                  </div>
+  
+                  <div className="mb-3">
+                    <label htmlFor="mobile" className="form-label">
+                      <i className="fas fa-mobile-alt"></i> Mobile No
+                    </label>
+                    <input
+                      type="tel"
+                      className="form-control"
+                      id="mobile"
+                      placeholder="Mobile No"
+                      value={mobile}
+                      onChange={(e) => setMobile(e.target.value)}
+                    />
+                    <div className="error-message" style={{ color: 'red' }}>
+                      {mobileError}
+                    </div>
+                  </div>
+  
+                  <div className="mb-3 text-center">
+                    <button
+                      type="button"
+                      id="submit-button"
+                      className="form-control custom-pink-button"
+                      style={{ backgroundColor: '#ff146e', color: 'white' }}
+                      onClick={validateForm}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+};
+
+export default MyComponent;
+    </script>
+
+</body>
+</html>
